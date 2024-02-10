@@ -1,16 +1,17 @@
 #!/usr/bin/python3
-"""Class review that inherit from BaseModel"""
+"""Defines the Review class."""
 from models.base_model import BaseModel
 
 
 class Review(BaseModel):
-    """Class review.
+    """Represent a review.
 
     Attributes:
-        place_id (str): The id of place.
-        user_id (str): The id of user.
-        text (str): The text
+        place_id (str): The Place id.
+        user_id (str): The User id.
+        text (str): The text of the review.
     """
+
     place_id = ""
     user_id = ""
     text = ""

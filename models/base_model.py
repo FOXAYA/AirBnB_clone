@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Defines the BaseModel class"""
+""" Defines the BaseModel class """
+
+
 import models
 from uuid import uuid4
 from datetime import datetime
@@ -45,5 +47,5 @@ class BaseModel:
 
     def __str__(self):
         """Return the print/str representation of the BaseModel instance."""
-        cls_name = self.__class__.__name__
-        return "[{}] ({}) {}".format(cls_name, self.id, self.__dict__)
+        clas_name = self.__class__.__name__
+        return "[{}] ({}) {}".format(clas_name, self.id, self.__dict__)

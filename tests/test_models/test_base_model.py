@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 """Defines unittests for models/base_model.py.
+
 Unittest classes:
-    TestBaseModel_instantiation
-    TestBaseModel_save
-    TestBaseModel_to_dict
+    >> TestBaseModel_instantiation
+    >> TestBaseModel_save
+    >> TestBaseModel_to_dict
 """
 import os
-#import models
+import models
 import unittest
 from datetime import datetime
 from time import sleep
@@ -54,11 +55,11 @@ class TestBaseModel_instantiation(unittest.TestCase):
         bm = BaseModel()
         bm.id = "123456"
         bm.created_at = bm.updated_at = dt
-        bmstr = bm.__str__()
-        self.assertIn("[BaseModel] (123456)", bmstr)
-        self.assertIn("'id': '123456'", bmstr)
-        self.assertIn("'created_at': " + dt_repr, bmstr)
-        self.assertIn("'updated_at': " + dt_repr, bmstr)
+        bm_str = bm.__str__()
+        self.assertIn("[BaseModel] (123456)", bm_str)
+        self.assertIn("'id': '123456'", bm_str)
+        self.assertIn("'created_at': " + dt_repr, bm_str)
+        self.assertIn("'updated_at': " + dt_repr, bm_str)
 
     def test_args_unused(self):
         bm = BaseModel(None)
@@ -189,3 +190,4 @@ class TestBaseModel_to_dict(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

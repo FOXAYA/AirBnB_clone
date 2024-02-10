@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""__init__ is amagic method for models"""
+""" __init__ amagic method for models"""
 from models.engine.file_storage import FileStorage
 
 

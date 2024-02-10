@@ -1,40 +1,16 @@
 #!/usr/bin/python3
+""" testing Amenity """
 import unittest
+import pep8
 from models.amenity import Amenity
-"""
-Unittest Module for Amenity class
-"""
 
+class Amenity_testing(unittest.TestCase):
+    """ check BaseModel """
 
-class TestAmenity(unittest.TestCase):
-    ''' Unittest for Amenity class '''
-
-    def test_object_Instantiation(self):
-        ''' instantiates class '''
-        self.amenity = Amenity()
-
-    def testattr(self):
-        ''' test Class: Amenity attributes '''
-        self.amenity = Amenity()
-        self.assertTrue(hasattr(self.amenity, "created_at"))
-        self.assertTrue(hasattr(self.amenity, "updated_at"))
-        self.assertFalse(hasattr(self.amenity, "random_attr"))
-        self.assertTrue(hasattr(self.amenity, "name"))
-        self.assertTrue(hasattr(self.amenity, "id"))
-        self.assertEqual(self.amenity.__class__.__name__, "Amenity")
-
-    def testsave(self):
-        ''' testing method: save '''
-        self.amenity = Amenity()
-        self.amenity.save()
-        self.assertTrue(hasattr(self.amenity, "updated_at"))
-
-    def teststr(self):
-        ''' testing __str__ return format of Amenity '''
-        self.amenity = Amenity()
-        s = "[{}] ({}) {}".format(self.amenity.__class__.__name__,
-                                  str(self.amenity.id), self.amenity.__dict__)
-        self.assertEqual(print(s), print(self.amenity))
-
-if __name__ == '__main__':
-    unittest.main()
+    def testpep8(self):
+        """ testing codestyle """
+        pepstylecode = pep8.StyleGuide(quiet=True)
+        path_user = 'models/amenity.py'
+        result = pepstylecode.check_files([path_user])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")

@@ -1,82 +1,146 @@
 #!/usr/bin/python3
-"""
-Unittest Module for FileStorage
-"""
+""" Check Filestorage class """
 import unittest
+from os import path
 from models import storage
 from models.user import User
+from models.city import City
+from models.state import State
+from models.place import Place
+from models.review import Review
+from models.amenity import Amenity
 from models.base_model import BaseModel
-from models.engine import file_storage
 from models.engine.file_storage import FileStorage
-import os
 
 
-class TestFileStorage(unittest.TestCase):
-    ''' Unittest for FileStorage class '''
+class test_storage(unittest.TestCase):
+    """ check the class """
 
-    def test_Instantiation(self):
-        ''' checks instance is of class BaseModel '''
-        obj = FileStorage()
-        self.assertIsInstance(obj, FileStorage)
+    def setUp(self):
+        """ check empty """
+        try:
+            remove('file.json')
+        except Exception:
+            pass
+        FileStorage._FileStorage__objects = {}
 
-    def test_Access(self):
-        ''' test read-write access permissions '''
-        rd = os.access('models/engine/file_storage.py', os.R_OK)
-        self.assertTrue(rd)
-        wr = os.access('models/engine/file_storage.py', os.W_OK)
-        self.assertTrue(wr)
-        ex = os.access('models/engine/file_storage.py', os.X_OK)
-        self.assertFalse(ex)
+    def tearDown(self):
+        """ check remove class """
+        try:
+            remove('file.json')
+        except Exception:
+            pass
 
-    def test_new(self):
-        """
-        Tests method: new (saves new object into dictionary)
-        """
-        m_storage = FileStorage()
-        instances_dic = m_storage.all()
-        Aman = User()
-        Aman.id = 999999
-        Aman.name = "Aman"
-        m_storage.new(Aman)
-        key = Aman.__class__.__name__ + "." + str(Aman.id)
-        self.assertIsNotNone(instances_dic[key])
+    def test_no_objs(self):
+        """ check empty class  """
+        self.assertEqual(storage.all(), {})
+
+    def test_all(self):
+        """ check  all function """
+        storage = FileStorage()
+        obj = storage.all()
+        self.assertIsNotNone(obj)
+        self.assertEqual(type(obj), dict)
+        self.assertIs(obj, storage._FileStorage__objects)
+
+    def test_save_create(self):
+        """ Save  """
+        obj = BaseModel()
+        obj_key = 'BaseModel' + '.' + obj.id
+        obj1 = User()
+        obj1_key = 'User' + '.' + obj1.id
+        obj2 = City()
+        obj2_key = 'City' + '.' + obj2.id
+        obj3 = Amenity()
+        obj3_key = 'Amenity' + '.' + obj3.id
+        obj4 = Place()
+        obj4_key = 'Place' + '.' + obj4.id
+        obj5 = Review()
+        obj5_key = 'Review' + '.' + obj5.id
+        obj6 = State()
+        obj6_key = 'State' + '.' + obj6.id
+
+        self.assertEqual(obj, storage.all()[obj_key])
+        self.assertEqual(obj1, storage.all()[obj1_key])
+        self.assertEqual(obj2, storage.all()[obj2_key])
+        self.assertEqual(obj3, storage.all()[obj3_key])
+        self.assertEqual(obj4, storage.all()[obj4_key])
+        self.assertEqual(obj5, storage.all()[obj5_key])
+        self.assertEqual(obj6, storage.all()[obj6_key])
+
+    def test_new_empty(self):
+        """ check new method """
+        with self.assertRaises(TypeError):
+            storage.new()
+
+    def test_new_classes(self):
+        """ check  new method is valid """
+        obj = BaseModel(id='123')
+        obj_key = 'BaseModel' + '.' + obj.id
+        obj1 = User(id='01')
+        obj1_key = 'User' + '.' + obj1.id
+        obj2 = City(id='02')
+        obj2_key = 'City' + '.' + obj2.id
+        obj3 = Amenity(id='03')
+        obj3_key = 'Amenity' + '.' + obj3.id
+        obj4 = Place(id='04')
+        obj4_key = 'Place' + '.' + obj4.id
+        obj5 = Review(id='05')
+        obj5_key = 'Review' + '.' + obj5.id
+        obj6 = State(id='06')
+        obj6_key = 'State' + '.' + obj6.id
+
+        self.assertEqual(storage.all(), {})
+        obj.id = 123
+        storage.new(obj)
+        storage.new(obj1)
+        storage.new(obj2)
+        storage.new(obj3)
+        storage.new(obj4)
+        storage.new(obj5)
+        storage.new(obj6)
+        self.assertEqual(obj, storage.all()[obj_key])
+        self.assertEqual(obj1, storage.all()[obj1_key])
+        self.assertEqual(obj2, storage.all()[obj2_key])
+        self.assertEqual(obj3, storage.all()[obj3_key])
+        self.assertEqual(obj4, storage.all()[obj4_key])
+        self.assertEqual(obj5, storage.all()[obj5_key])
+        self.assertEqual(obj6, storage.all()[obj6_key])
 
     def test_reload(self):
-        """
-        Tests method: reload (reloads objects from string file)
-        """
-        a_storage = FileStorage()
-        try:
-            os.remove("file.json")
-        except:
-            pass
-        with open("file.json", "w") as f:
-            f.write("{}")
-        with open("file.json", "r") as r:
-            for line in r:
-                self.assertEqual(line, "{}")
-        self.assertIs(a_storage.reload(), None)
+        """ check reload classes """
+        obj = BaseModel()
+        obj_key = 'BaseModel' + '.' + obj.id
+        obj1 = User()
+        obj1_key = 'User' + '.' + obj1.id
+        obj2 = City()
+        obj2_key = 'City' + '.' + obj2.id
+        obj3 = Amenity()
+        obj3_key = 'Amenity' + '.' + obj3.id
+        obj4 = Place()
+        obj4_key = 'Place' + '.' + obj4.id
+        obj5 = Review()
+        obj5_key = 'Review' + '.' + obj5.id
+        obj6 = State()
+        obj6_key = 'State' + '.' + obj6.id
+        storage.save()
 
-    def test_funcdocs(self):
-        ''' testing functions docstring '''
-        for func in dir(FileStorage):
-            self.assertTrue(len(func.__doc__) > 0)
+        self.assertTrue(path.isfile('file.json'))
+        FileStorage._FileStorage__objects = {}
 
-    def test_save(self):
-        ''' tests save method'''
-        obj = FileStorage()
-        new_obj = BaseModel()
-        obj.new(new_obj)
-        dict1 = obj.all()
-        obj.save()
-        obj.reload()
-        dict2 = obj.all()
-        for key in dict1:
-            key1 = key
-        for key in dict2:
-            key2 = key
-        self.assertEqual(dict1[key1].to_dict(), dict2[key2].to_dict())
+        storage.reload()
 
-
-if __name__ == '__main__':
-    unittest.main()
+        self.assertTrue(obj_key in storage.all().keys())
+        self.assertEqual(obj.id, storage.all()[obj_key].id)
+        self.assertTrue(obj1_key in storage.all().keys())
+        self.assertEqual(obj1.id, storage.all()[obj1_key].id)
+        self.assertTrue(obj2_key in storage.all().keys())
+        self.assertEqual(obj2.id, storage.all()[obj2_key].id)
+        self.assertTrue(obj3_key in storage.all().keys())
+        self.assertEqual(obj3.id, storage.all()[obj3_key].id)
+        self.assertTrue(obj4_key in storage.all().keys())
+        self.assertEqual(obj4.id, storage.all()[obj4_key].id)
+        self.assertTrue(obj5_key in storage.all().keys())
+        self.assertEqual(obj5.id, storage.all()[obj5_key].id)
+        self.assertTrue(obj6_key in storage.all().keys())
+        self.assertEqual(obj6.id, storage.all()[obj6_key].id)

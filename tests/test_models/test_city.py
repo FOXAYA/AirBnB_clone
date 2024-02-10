@@ -1,46 +1,16 @@
 #!/usr/bin/python3
+""" testing city """
 import unittest
+import pep8
 from models.city import City
-"""
-Unittest Module for City class
-"""
 
+class City_testing(unittest.TestCase):
+    """ check BaseModel """
 
-class TestUser(unittest.TestCase):
-    ''' Unittest for City class '''
-
-    def test_object_Instantiation(self):
-        ''' instantiates class '''
-        self.city = City()
-
-    def testattr(self):
-        ''' test Class: City attributes '''
-        self.city = City()
-        self.assertTrue(hasattr(self.city, "created_at"))
-        self.assertTrue(hasattr(self.city, "updated_at"))
-        self.assertFalse(hasattr(self.city, "random_attr"))
-        self.assertTrue(hasattr(self.city, "name"))
-        self.assertTrue(hasattr(self.city, "id"))
-        self.assertEqual(self.city.name, "")
-        self.assertEqual(self.city.state_id, "")
-        self.city.name = "WonderLand"
-        self.city.state_id = "Won67L0nd"
-        self.assertEqual(self.city.name, "WonderLand")
-        self.assertEqual(self.city.state_id, "Won67L0nd")
-        self.assertEqual(self.city.__class__.__name__, "City")
-
-    def testsave(self):
-        ''' testing method: save '''
-        self.city = City()
-        self.city.save()
-        self.assertTrue(hasattr(self.city, "updated_at"))
-
-    def teststr(self):
-        ''' testing __str__ return format of BaseModel '''
-        self.city = City()
-        s = "[{}] ({}) {}".format(self.city.__class__.__name__,
-                                  str(self.city.id), self.city.__dict__)
-        self.assertEqual(print(s), print(self.city))
-
-if __name__ == '__main__':
-    unittest.main()
+    def testpep8(self):
+        """ testing codestyle """
+        pepstylecode = pep8.StyleGuide(quiet=True)
+        path_user = 'models/city.py'
+        result = pepstylecode.check_files([path_user])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")

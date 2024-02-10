@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """
 module executes whn models package is imported
 """

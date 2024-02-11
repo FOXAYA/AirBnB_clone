@@ -28,7 +28,7 @@ To start the AirBnB Clone command interpreter, follow these steps:
    ./console.py
    ```
 
-### How to Use
+## HOW TO USE
 Once the command interpreter is running, you can use various commands to interact with the AirBnB Clone system. Here are some common commands:
 
 * `create`: Create a new property or user.

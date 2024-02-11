@@ -7,8 +7,7 @@ The AirBnB Clone project is a simplified replica of the popular vacation rental 
 
 ## Command Interpreter
 
-The command interpreter is a text-based interface that allows users to interact with the AirBnB Clone system. It provides a set of commands to manage properties, users, and bookings. These commands include creating new properties, viewing property details, booking properties, and more.
-
+The command interpreter is a text-based interface that allows users to interact with the AirBnB Clone system. It provides a set of commands to manage properties, users, and bookings.
 ### How to Start
 
 To start the AirBnB Clone command interpreter, follow these steps:
@@ -16,7 +15,7 @@ To start the AirBnB Clone command interpreter, follow these steps:
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/Amyn00/AirBnB_clone.git
+   git clone
    ```
 
 2. Navigate to the project directory:

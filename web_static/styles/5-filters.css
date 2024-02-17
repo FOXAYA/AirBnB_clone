@@ -1,58 +1,40 @@
-.filters {
-    background-color: #FFFFFF;
-    height: 70px;
-    width: 100%;
-    border: 1px solid #DDDDDD;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-button {
-    font-size: 18px;
-    background-color: #FF5A5F;
-    color: #FFFFFF;
-    height: 48px;
-    width: 20%;
-    border-radius: 4px;
-    margin-right: 30px;
-    text-align: center;
-    opacity: 1.0;
-    filter: alpha(opacity=100);
-}
-
-button:hover {
-    opacity: 0.9;
-    filter: alpha(opacity=100);
-}
-
-.locations {
+/* Locations and Amenities class style */
+.filters .locations, 
+.filters .amenities {
     height: 100%;
     width: 25%;
+    display: inline-block;
+    position: relative;
+}
+
+/* Locations border */
+.filters .locations {
     border-right: 1px solid #DDDDDD;
-    margin-right: 0;
-    
 }
 
-.amenities {
-    height: 100%;
-    width: 25%;
-    margin-right: auto;
+/* Header box sizing */
+.filters h2,
+.filters h3,
+.filters h4 {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-.title {
-    margin-bottom: 0;
-    margin-left: 15%;
-    text-align: left;
+/* Header 3 style */
+.filters h3 {
     font-weight: 600;
-}
-
-.subtitle {
-    margin-top: 0;
-    margin-left: 15%;
-    text-align: left;
+    font-size: 1.17em;
+    padding-top: 10px;
+    padding-left: 30px;
+    line-height: 0px;
+  }
+  
+  /* Header 4 style */
+  .filters h4 {
     font-size: 14px;
     font-weight: 400;
-
-}
+    line-height: 0px;
+    padding-left: 30px;
+    padding-bottom: 5px;
+  }

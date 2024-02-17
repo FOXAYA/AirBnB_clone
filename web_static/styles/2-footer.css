@@ -1,11 +1,12 @@
-footer
-{
-	background-color:#00FF00;
-	height: 60px;
-	width: 100%;
-	position: absolute;
-	bottom: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+/* Footer style */
+
+footer{
+    background-color: #00FF00;
+    height: 60px;
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+    bottom: 0;
+	text-align: center;
+	line-height: 30px;
 }

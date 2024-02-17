@@ -1,8 +1,8 @@
-html, body
-{
-    height: 100;
+html, body {
+    height: 100%;
 }
-/* Body (Common) style */
+
+/* Common style */
 body{
     margin: 0;
     padding: 0;
@@ -10,12 +10,9 @@ body{
     color: #484848;
     font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
-/*div with class(container) style*/
-.container
-{
-    max-width:  1000px;
-    margin : 30px auto;
-    
-      
-}
 
+/* container style */
+.container{
+    max-width: 1000px;
+    margin: 30px auto;
+}
